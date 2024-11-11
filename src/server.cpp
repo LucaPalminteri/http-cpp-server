@@ -1,35 +1,10 @@
+#include "utils.h"
 #include <iostream>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
 #include <cstring>
 #include <string>
-#include <fstream>
-#include <sstream>
-
-std::string readFile(const std::string& filename) {
-    std::ifstream file(filename);
-    if (!file.is_open()) {
-        return "";
-    }
-    std::stringstream buffer;
-    buffer << file.rdbuf();
-    return buffer.str();
-}
-
-std::string getMimeType(const std::string& filename) {
-    size_t dot_pos = filename.find_last_of(".");
-    if (dot_pos != std::string::npos) {
-        std::string ext = filename.substr(dot_pos);
-        if (ext == ".html") return "text/html";
-        if (ext == ".css") return "text/css";
-        if (ext == ".js") return "application/javascript";
-        if (ext == ".jpg" || ext == ".jpeg") return "image/jpeg";
-        if (ext == ".png") return "image/png";
-        if (ext == ".gif") return "image/gif";
-    }
-    return "text/plain";
-}
 
 int main() {
     const int PORT = 8080;
