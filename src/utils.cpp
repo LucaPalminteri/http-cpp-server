@@ -16,6 +16,18 @@ string readFile(const string& filename) {
     return buffer.str();
 }
 
+string getFilePath(const string &path) {
+    if (path == "/") {
+        return "public/index.html";
+    } else if (path == "/about") {
+        return "public/about.html";
+    } else if (path == "/contact") {
+        return "public/contact.html";
+    } else {
+        return "public" + path;
+    }
+}
+
 string getMimeType(const string& filename) {
     static map<string, string> mimeTypes;
     if (mimeTypes.empty()) {
